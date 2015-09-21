@@ -1,0 +1,10 @@
+## Interface: 60200
+## Title: GoodGamble
+## Author: Supultura
+## Version: 0.1
+## LoadOnDemand: 0
+## Notes: A roll game addon for WoW
+## URL: https://github.com/supultura/GoodGamble
+## SavedVariables: GoodGamble
+GoodGamble.lua
+GoodGamble.xml
