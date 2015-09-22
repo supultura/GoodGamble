@@ -14,9 +14,16 @@ end
 
 --TODO--
 --ResetGame--
+--EntryListener--
+	--list of entered players
+	--remove player from list
+--RollGame--
+	--ask for roll
+	--
 --ResetStats--
 local function ResetStats()
 	GoodGamble["Stats"] = {};
+end
 --Ban--
 local function BanUser(User)
 	local Character, Realm = strsplit('-', User);
