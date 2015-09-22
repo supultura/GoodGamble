@@ -15,6 +15,8 @@ end
 --TODO--
 --ResetGame--
 --ResetStats--
+local function ResetStats()
+	GoodGamble["Stats"] = {};
 --Ban--
 local function BanUser(User)
 	local Character, Realm = strsplit('-', User);
@@ -62,6 +64,11 @@ local function BanList()
 		end
 	end
 end
+
+local function Roll(roll)
+	RandomRoll(1, roll);
+end
+
 local function SlashCmds(cmd)
 	local option = cmd:lower();
 	if (option == "" or option == nil) then
@@ -87,6 +94,8 @@ local function SlashCmds(cmd)
 		UnbanUser(strsub(option, 7));
 	elseif (option == "banlist") then
 		BanList();
+	elseif (option == "roll") then
+		Roll(5000);
 	else
 		PrintMessage("Invalid Command, /gg for list of available options");
 	end
