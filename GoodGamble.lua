@@ -1,7 +1,12 @@
-
+local ChatType; --find new way to use non-.toc global variables
+local LocalStats = {};
+local EnteredPlayers = {};
 --OnLoad--
 local function OnLoad(self)
 	DEFAULT_CHAT_FRAME:AddMessage("|cffff0000<GoodGamble 0.1> /gg for options");
+--	local frame = CreateFrame("FRAME"); -- Need a frame to respond to events
+--	frame:RegisterEvent("ADDON_LOADED"); -- Fired when saved variables are loaded
+--	frame:RegisterEvent("PLAYER_LOGOUT"); -- Fired when about to log out
 --	SlashInit();
 end
 
@@ -15,12 +20,25 @@ end
 --Init--
 	--Check if Player has loaded(Blizzard API: PlayerLoadedWorld(?))
 	--Chat Channel default
+	--Global Variable GoodGamble from GoodGamble.toc
+local function init()
+	ChatType = "INSTANCE_CHAT";
+end
 --Chat--
-	--Cycle through Instance(i) Guild (g) Whisper (w/r)
-	--sets default channel for entire program
+--Cycle through Instance(i) Guild (g)
+--Instance works for Party/raid/lfr/instance/general groups
+--guild for whatever other reason(Most like for stat posting)
+local function ChangeChat()
+	if (ChatType == "INSTANCE_CHAT") then
+		ChatType = "GUILD";
+	else
+		ChatType = "INSTANCE_CHAT";
+	end
+end
 --Chat Message Handler--
-	--Same as PrintMessage but with Chat Method passed in
-	--overloading in Lua?
+local function ChatMessage(msg)
+	SendChatMessage(msg, ChatType);
+end
 --ResetGame--
 	--break current function
 	--Stop listening to 1s, Clear arrays/tables
@@ -34,7 +52,7 @@ end
 	--handle draw
 --CompareRolls(TableOfRolls)--
 	--sort table
-	--[0] - [SizeOfTable] = amount owed, Player1 owes Player2 x gold
+	--TableOfRolls[0][0] - TableOfRolls[SizeOfTable][1] = amount owed, Player1 owes Player2 x gold
 	--Check if player is on stats if not add if is -/+
 --GameModes--
 	--Standard
@@ -45,10 +63,17 @@ end
 	--Other Games TBA
 		--possible roulette reference?
 --Stats--
+	--Session (local reset each time)
+	--Global (from GoodGamble.toc)
 	--table |Player|Gold|
---PrintStats--
+--StatsAdd(TableOfStats, Player, Gold)
+	--splits table adds gold re adds player back
+--PrintStats(Table)--
+	--Print Local Or Global depending on button
 	--Sort table
 	--print Name has won/lost gold depending on negative
+	for i = 0, table.getn(table) do
+		local 
 --ResetStats--
 local function ResetStats()
 	GoodGamble["Stats"] = {};
