@@ -15,31 +15,70 @@
 </Ui>-->
 
 <Ui xmlns="http://www.blizzard.com/wow/ui/"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-   <Script file="GoodGamble.lua" />
-   <Scripts>
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Script file="GoodGamble.lua" />
+	<Scripts>
 		<OnLoad>
 			OnLoad();
 		</OnLoad>
 	</Scripts>
-   <Frame name="GoodGamble_Frame" parent="UIParent" toplevel="true" enableMouse="true">
-     <Size>
-       <AbsDimension x="400" y="400" />
-     </Size>
-     <Anchors>
-       <Anchor point="CENTER" />
-     </Anchors>
-     <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background"
-           edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
-       <BackgroundInsets>
-         <AbsInset left="11" right="12" top="12" bottom="11"/>
-       </BackgroundInsets>
-       <TileSize>
-         <AbsValue val="32"/>
-       </TileSize>
-       <EdgeSize>
-         <AbsValue val="32"/>
-       </EdgeSize>
-     </Backdrop>
-   </Frame>
- </Ui>
+	<Frame name="GoodGamble_Frame" parent="UIParent" toplevel="true" enableMouse="true">
+		<Size>
+			<AbsDimension x="400" y="400" />
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER" />
+		</Anchors>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background"
+			edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32"/>
+			</EdgeSize>
+		</Backdrop>
+		<Layers>
+			<Layer level="OVERLAY">
+				<FontString name="Good Gamble" inherits="GameFontNormal" text="Good Gamble">
+					<Size x="300" y="20"/>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset x="10" y="-20"/>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="version" inherits="GameFontNormal" text="cffff00(6.2.0)">
+					<Size x="300" y="18"/>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset x="10" y="-30"/>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="Author" inherits="GameFontNormal" text="Kharnifex(Frostmourne)">
+					<Size x="100" y="200"/>
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset x="100" y="-130"/>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="GoodGamble_Close" inherits="UIPanelCloseButton">
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="GoodGamble_Frame" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="7" y="6"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+	</Frame>
+</Ui>

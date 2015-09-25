@@ -1,6 +1,11 @@
 local ChatType; --find new way to use non-.toc global variables
 local LocalStats = {};
 local EnteredPlayers = {};
+--Table of Players on stats list
+--Indexed with 0-n
+--Table of Gold earned 
+--Indexed Player - gold
+--Double for loop to iterate through stats
 --OnLoad--
 local function OnLoad(self)
 	DEFAULT_CHAT_FRAME:AddMessage("|cffff0000<GoodGamble 0.1> /gg for options");
