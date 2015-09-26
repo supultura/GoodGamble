@@ -1,6 +1,7 @@
 local ChatType; --find new way to use non-.toc global variables
 local LocalStats = {};
 local EnteredPlayers = {};
+local AcceptPlayers;
 --Table of Players on stats list
 --Indexed with 0-n
 --Table of Gold earned 
@@ -29,6 +30,10 @@ end
 local function init()
 	ChatType = "INSTANCE_CHAT";
 end
+local function StartGame()
+	AcceptPlayers = true;
+	EntryListener();
+end
 --Chat--
 --Cycle through Instance(i) Guild (g)
 --Instance works for Party/raid/lfr/instance/general groups
@@ -36,8 +41,10 @@ end
 local function ChangeChat()
 	if (ChatType == "INSTANCE_CHAT") then
 		ChatType = "GUILD";
+		--Chat text on button GUILD
 	else
 		ChatType = "INSTANCE_CHAT";
+		--chat text on button INSTANCE
 	end
 end
 --Chat Message Handler--
@@ -51,10 +58,26 @@ end
 	--check 1s
 	--list of entered players
 	--remove player from list
+local function EntryListener()
+	if(AcceptPlayers == true)
+		ChatMessage("-Welcome to Good Gamble! Rolling for " .. GoodGamble_RollAmount:GetText() .. " Press 1 to Join and -1 to Leave");\
+		if (ChatType == "INSTANCE_CHAT") then
+			local frame = CreateFrame("Frame");
+			frame:RegisterEvent("CHAT_MSG_INSTANCE_CHAT");
+			frame:SetScript("OnEvent"), function(self,event,msg)
+				if event == "CHAT_MSG_INSTANCE_CHAT" and msg == "1" then
+					
+		elseif(ChatType == "GUILD_CHAT")
+
+
 --CheckRolls(EnteredPlayers)--
 	--ask for rolls
 	--listen for rolls, add rolls + players to table, remove players from entered players
 	--handle draw
+--HandleDraw(TableOfRolls/Players)
+	--compare each roll to each other
+	--if roll == OtherRoll
+		--Get players to reroll (1-number if losing draw)(number - Max gold size if winning draw)
 --CompareRolls(TableOfRolls)--
 	--sort table
 	--TableOfRolls[0][0] - TableOfRolls[SizeOfTable][1] = amount owed, Player1 owes Player2 x gold
@@ -73,12 +96,13 @@ end
 	--table |Player|Gold|
 --StatsAdd(TableOfStats, Player, Gold)
 	--splits table adds gold re adds player back
+local function JoinGame()
+	ChatMessage("1");
+end
 --PrintStats(Table)--
 	--Print Local Or Global depending on button
 	--Sort table
 	--print Name has won/lost gold depending on negative
-	for i = 0, table.getn(table) do
-		local 
 --ResetStats--
 local function ResetStats()
 	GoodGamble["Stats"] = {};
